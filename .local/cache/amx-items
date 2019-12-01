@@ -1,0 +1,21 @@
+
+;; ----- amx-history -----
+(
+ emacs-lisp-mode
+ query-replace
+ customize-themes
+ pyvenv-mode
+ rustic-mode
+ text-mode
+ cd
+)
+
+;; ----- amx-data -----
+(
+ (customize-themes . 3)
+ (text-mode . 1)
+ (rustic-mode . 3)
+ (query-replace . 7)
+ (pyvenv-mode . 1)
+ (emacs-lisp-mode . 1)
+)

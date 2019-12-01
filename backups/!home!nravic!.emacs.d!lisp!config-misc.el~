@@ -1,0 +1,11 @@
+;; Utils/UX stuff for emacs
+
+;; Ivy and co
+(use-package ivy
+  :ensure t
+  :init
+  (ivy-mode 1))
+
+;; company
+
+(provide 'init-utils.el)
