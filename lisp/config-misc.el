@@ -68,6 +68,4 @@
 
 ;; rainbow mode
 
-
-
 (provide 'config-misc.el)

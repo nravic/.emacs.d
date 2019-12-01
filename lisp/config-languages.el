@@ -4,7 +4,7 @@
 (use-package flycheck
   :ensure t
   :disabled f
-  :init
+;; Flycheck
   (flycheck-mode 1))
 
 (use-package company
@@ -18,10 +18,6 @@
   :ensure t
   :commands lsp
   :config (require 'lsp-clients))
-
-(use-package lsp-ui
-  :ensure t
-  )
 
 ;; Python
   (use-package elpy
@@ -46,6 +42,7 @@
 (use-package flycheck-rust
   :ensure t
   :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+(use-package toml-mode)
 
 ;; Matlab
 
