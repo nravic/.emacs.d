@@ -8,13 +8,22 @@
 
   :config
   (setq ivy-height 15)
-  (global-set-key "\C-s" 'swiper))
+  (global-set-key "\C-s" 'swiper)
+
+  (setq ivy-re-builders-alist
+	'((swiper . ivy--regex-plus)
+	  (t . ivy--regex-ignore-order))))
 
 (use-package counsel
   :ensure t
   :after ivy
   :init
   )
+
+(use-package eyebrowse
+  :ensure t
+  :init
+  (eyebrowse-mode t))
 
 ;; config misc misc
 (use-package which-key
@@ -65,7 +74,17 @@
 (tool-bar-mode -1)
 
 (load-theme 'gruvbox-dark-hard t)
+(set-default-font "Iosevka-12")
 
-;; rainbow mode
+(use-package telephone-line
+  :ensure t
+  :init
+  (setq telephone-line-primary-left-separator 'telephone-line-cubed-left
+	telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left
+	telephone-line-primary-right-separator 'telephone-line-cubed-right
+	telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
+  (setq telephone-line-height 24
+	telephone-line-evil-use-short-tag t)
+  (telephone-line-mode t))
 
 (provide 'config-misc.el)

@@ -24,7 +24,6 @@
   :ensure t
   :commands lsp-ui-mode)
 
-
 (use-package company-lsp
   :ensure t
   :commands company-lsp)
@@ -33,7 +32,7 @@
   :ensure t)
 
 ;; Python
-  (use-package elpy
+(use-package elpy
   :ensure t
   :hook
   (python-mode . elpy-enable)
@@ -48,7 +47,7 @@
 
 (use-package cargo
   :ensure t
-  :hook (rust-mode . cargo-minor-mode))
+  :hook (rustic . cargo-minor-mode))
 
 (use-package flycheck-rust
   :ensure t
@@ -58,8 +57,25 @@
 
 
 ;; Javascript
+(use-package js2-mode
+  :ensure t
+  :mode "\\.js\\'"
+  :init
+  (setq js2-highlight-level 3))
 
+;; rainbow mode
+(use-package rainbow-mode
+  :ensure t
+  :hook (js2-mode . rainbow-mode))
 
-;; sh
+;; Julia
+(use-package julia-repl
+  :ensure t
+  :hook (julia-repl . julia-mode))
+
+;; Latex
+(use-package latex
+  :defer t
+  :ensure auctex)
 
 (provide 'config-languages.el)

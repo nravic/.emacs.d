@@ -15,10 +15,6 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
-;; Things I've stolen from doom emacs for ~~speed~~
-(setq gc-cons-threshold most-positive-fixnum)
-(setq load-prefer-newer noninteractive)
-
 ;; Keep your custom set variables away from me!
 (setq custom-file (concat user-emacs-directory "/custom.el"))
 
@@ -29,7 +25,15 @@
 ;; misc/QOL
 (setq ring-bell-function 'ignore)
 
+;; cleaner backups
+(setq backup-directory-alist '(("" . "~/.emacs.d/backups")))
 
-;; things to get
-;; rainbow mode
-;; 
+;; goodbye buffer (and save)
+(global-set-key (kbd "<C-delete>")
+                (lambda () (interactive)
+                  (funcall (if (string= (buffer-name) "*scratch*")
+                               'bury-buffer
+                             (lambda ()
+                               (and (buffer-file-name) (save-buffer))
+                               (kill-buffer))))))
+
