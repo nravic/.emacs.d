@@ -39,7 +39,8 @@
 
   :config
   (setq python-shell-interpreter "ipython"
-        python-shell-interpreter-args "-i --simple-prompt"))
+	python-shell-interpreter-args "-i --simple-prompt")
+  (highlight-indentation-mode -1))
 
 ;; Rust
 (use-package rust-mode
