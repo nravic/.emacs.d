@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+
+import os
+import numpy as np
+import pandas as pd
+from numpy import linalg as la
+import matplotlib.pyplot as plt
+import datetime as dt
+import math
+
+# grab amcl data for every chuck at the site and process
+def data_pipeline(filename):
+    df = pd.read_csv(filename, error_bad_lines=False, low_memory=False)
+    df['timestamp'] = df['timestamp'].astype('datetime64[s]')
+    df.sort_values(by='timestamp', inplace=True)
+    df.reset_index(inplace=True)
+
+    return df
+
+# find max eigenvalues for each chuck over time_window period
+def get_max_eigenvalues(df):
+    chucks = df.id.unique().tolist()
+    ylen = math.ceil(len(df)/(len(chucks)-2))
+    max_evalue = np.zeros((len(chucks), ylen)) #long, but can trim 0s for each chuck after
+    
+    for c in range(len(chucks) -1):
+        df_c = df[df['id']==chucks[c]]
+        df_c.sort_values(by='timestamp', inplace=True)
+        df_c.reset_index(inplace=True)
+        timestamps = df_c['timestamp']
+
+        for t in range(ylen):
+            try:
+                cov = np.array([
+                    [df_c['setCov_xx'][t], df_c['setCov_xy'][t], 0],
+                    [df_c['setCov_xy'][t], df_c['setCov_yy'][t], 0],
+                    [0, 0, df_c['setCov_tt'][t]]
+                ])
+            except KeyError:
+                print('KeyError at key {}'.format(t))
+                break
+
+            # get eigenvalues
+            w, v = la.eig(cov)
+            max_evalue[c, t] = max(w)
+
+    return max_evalue
+
+
+# Main
+df = data_pipeline(filename)
+max_evalues = get_max_eigenvalues(df)
+
+# with the max evalues at every timestep for each chuck, run simple analysis
+
+stds = []
+means = []
+for i in range(len(max_evalues)-1):
+    stds.append(np.std(np.trim_zeros(max_evalues[i, :])))
+    means.append(np.mean(np.trim_zeros(max_evalues[i, :])))
+
+# test 'detection'
+std = np.mean(stds)
+mean = np.mean(means)
+
+# plots
+n = 15
+chuck_eigs = max_evalues[n, :]
+sd1 = (mean+std) * np.ones(len(chuck_eigs))
+sd2 = (mean+(2*std)) * np.ones(len(chuck_eigs))
+sd3 = (mean+(3*std)) * np.ones(len(chuck_eigs))
+
+# getting 3 standard deviations
+
+
+
+plt.plot(chuck_eigs)
+plt.plot(sd1)
+plt.plot(sd2)
+plt.plot(sd3)
+plt.show()
