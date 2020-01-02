@@ -48,7 +48,7 @@
 
 (use-package cargo
   :ensure t
-  :hook (rustic . cargo-minor-mode))
+  :hook (rust-mode . cargo-minor-mode))
 
 (use-package flycheck-rust
   :ensure t

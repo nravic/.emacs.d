@@ -36,4 +36,3 @@
                              (lambda ()
                                (and (buffer-file-name) (save-buffer))
                                (kill-buffer))))))
-

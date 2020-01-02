@@ -74,7 +74,7 @@
 (tool-bar-mode -1)
 
 (load-theme 'gruvbox-dark-hard t)
-(set-default-font "Iosevka-12")
+(set-default-font "Iosevka-11")
 
 (use-package telephone-line
   :ensure t
