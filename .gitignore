@@ -3,3 +3,4 @@ elpa/*
 backups/*
 auto-save-list/*
 .local/*
+ido.last
