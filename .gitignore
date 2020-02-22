@@ -4,3 +4,4 @@ backups/*
 auto-save-list/*
 .local/*
 ido.last
+custom.el

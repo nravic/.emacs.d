@@ -73,7 +73,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 
-(load-theme 'gruvbox-dark-hard t)
+(load-theme 'doom-dracula t)
 (set-default-font "Iosevka-11")
 
 (use-package telephone-line
@@ -88,3 +88,10 @@
   (telephone-line-mode t))
 
 (provide 'config-misc.el)
+
+;; move text
+(use-package move-text
+  :ensure t
+  :bind
+  ("M-u" . move-text-up)
+  ("M-p" . move-text-down))
