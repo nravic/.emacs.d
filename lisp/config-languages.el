@@ -26,7 +26,8 @@
 
 (use-package company-lsp
   :ensure t
-  :commands company-lsp)
+  :commands company-lsp
+  :config (push 'company-lsp company-backends)) ;; add company-lsp as a backend
 
 (use-package yasnippet
   :ensure t)
@@ -57,17 +58,31 @@
 ;; Matlab
 
 
-;; Javascript
-(use-package js2-mode
-  :ensure t
-  :mode "\\.js\\'"
-  :init
-  (setq js2-highlight-level 3))
+;; Javascript/React
+;; From the tide README
+(defun setup-tide-mode ()
+  "Set up Tide mode."
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save-mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
 
+(use-package tide
+  :ensure t
+  :after (js2-mode company flycheck)
+  :config
+  (setq company-tooltip-align-annotations t)
+  (add-hook 'before-save-hook 'tide-format-before-save)
+  (add-hook 'js2-mode-hook #'setup-tide-mode)
+  (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append))
+  
 ;; rainbow mode
 (use-package rainbow-mode
   :ensure t
-  :hook (js2-mode . rainbow-mode))
+  :hook (rjsx-mode . rainbow-mode))
 
 ;; Julia
 (use-package julia-repl
@@ -79,4 +94,14 @@
   :defer t
   :ensure auctex)
 
+
 (provide 'config-languages.el)
+
+(use-package ccls
+  :ensure t
+  :config
+  (setq ccls-executable "ccls")
+  (setq lsp-prefer-flymake nil)
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+  :hook ((c-mode c++-mode objc-mode) .
+         (lambda () (require 'ccls) (lsp))))

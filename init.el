@@ -2,7 +2,6 @@
 ;; It's organized in it's own little way, and I've tried to keep it as clean as possible.
 ;; Let's see how long that lasts!
 
-(package-initialize)
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
 ;; Emacs server
@@ -12,13 +11,10 @@
 
 ;; Setup Melpa
 (add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 
 (package-initialize)
 (require 'use-package)
-
-;; Keep your custom set variables away from me!
-(setq custom-file (concat user-emacs-directory "/custom.el"))
 
 ;; load all custom el files
 (require 'config-misc.el)
@@ -26,6 +22,11 @@
 
 ;; misc/QOL
 (setq ring-bell-function 'ignore)
+
+;; custom el
+(setq-default custom-file (expand-file-name ".custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 ;; cleaner backups
 (setq backup-directory-alist '(("" . "~/.emacs.d/backups")))
@@ -48,5 +49,3 @@
     (setenv "PATH" path-from-shell)
     (setq eshell-path-env path-from-shell) ; for eshell users
     (setq exec-path (split-string path-from-shell path-separator))))
-
-(when window-system (set-exec-path-from-shell-PATH))

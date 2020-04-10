@@ -72,9 +72,9 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
-
-(load-theme 'doom-dracula t)
-(set-default-font "Iosevka-11")
+(global-visual-line-mode 1)
+(load-theme 'doom-one-light t)
+(set-frame-font "Iosevka-11")
 
 (use-package telephone-line
   :ensure t
