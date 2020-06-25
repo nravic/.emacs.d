@@ -9,6 +9,7 @@
   :config
   (setq ivy-height 15)
   (global-set-key "\C-s" 'swiper)
+  (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-immediate-done)
 
   (setq ivy-re-builders-alist
 	'((swiper . ivy--regex-plus)
@@ -73,8 +74,9 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (global-visual-line-mode 1)
-(load-theme 'doom-one-light t)
-(set-frame-font "Iosevka-11")
+(set-frame-font "Hack-11")
+
+(load-theme 'doom-outrun-electric t)
 
 (use-package telephone-line
   :ensure t
@@ -87,11 +89,12 @@
 	telephone-line-evil-use-short-tag t)
   (telephone-line-mode t))
 
-(provide 'config-misc.el)
-
 ;; move text
 (use-package move-text
   :ensure t
   :bind
   ("M-u" . move-text-up)
   ("M-p" . move-text-down))
+
+
+(provide 'config-misc.el)

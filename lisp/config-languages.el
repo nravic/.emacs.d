@@ -94,9 +94,7 @@
   :defer t
   :ensure auctex)
 
-
-(provide 'config-languages.el)
-
+;; C/Cpp
 (use-package ccls
   :ensure t
   :config
@@ -105,3 +103,5 @@
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   :hook ((c-mode c++-mode objc-mode) .
          (lambda () (require 'ccls) (lsp))))
+
+(provide 'config-languages.el)

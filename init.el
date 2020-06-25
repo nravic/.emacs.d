@@ -19,6 +19,9 @@
 ;; load all custom el files
 (require 'config-misc.el)
 (require 'config-languages.el)
+(require 'config-org.el)
+(require 'company-org-roam)
+(push 'company-org-roam company-backends)
 
 ;; misc/QOL
 (setq ring-bell-function 'ignore)
