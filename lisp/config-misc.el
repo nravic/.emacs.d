@@ -15,6 +15,16 @@
 	'((swiper . ivy--regex-plus)
 	  (t . ivy--regex-ignore-order))))
 
+(use-package ivy-bibtex
+  :ensure t
+  :config
+  (setq bibtex-completion-bibliography
+	'("~/research/bibfile.bib"))
+  (setq bibtex-completion-library-path
+	'("~/research/"))
+  )
+
+
 (use-package counsel
   :ensure t
   :after ivy
@@ -76,7 +86,10 @@
 (global-visual-line-mode 1)
 (set-frame-font "Hack-11")
 
-(load-theme 'doom-outrun-electric t)
+(use-package doom-themes
+  :ensure t
+  :config
+  (load-theme 'doom-horizon t))
 
 (use-package telephone-line
   :ensure t

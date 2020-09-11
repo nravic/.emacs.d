@@ -21,6 +21,7 @@
 (require 'config-languages.el)
 (require 'config-org.el)
 (require 'company-org-roam)
+(require 'org-roam-protocol)
 (push 'company-org-roam company-backends)
 
 ;; misc/QOL

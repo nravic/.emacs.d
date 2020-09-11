@@ -32,6 +32,7 @@
 (use-package yasnippet
   :ensure t)
 
+
 ;; Python
 (use-package elpy
   :ensure t
@@ -42,6 +43,7 @@
   (setq python-shell-interpreter "ipython"
 	python-shell-interpreter-args "-i --simple-prompt")
   (highlight-indentation-mode -1))
+
 
 ;; Rust
 (use-package rust-mode
@@ -84,15 +86,18 @@
   :ensure t
   :hook (rjsx-mode . rainbow-mode))
 
+
 ;; Julia
 (use-package julia-repl
   :ensure t
   :hook (julia-repl . julia-mode))
 
+
 ;; Latex
 (use-package latex
   :defer t
   :ensure auctex)
+
 
 ;; C/Cpp
 (use-package ccls
@@ -103,5 +108,26 @@
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   :hook ((c-mode c++-mode objc-mode) .
          (lambda () (require 'ccls) (lsp))))
+
+
+;; Scheme/Lisp
+(use-package geiser
+  :ensure t)
+
+(use-package paredit
+  :ensure t
+  :hook (scheme-mode, common-lisp-mode))
+
+;; SICM stuff
+(defun mechanics ()
+ "Run mit-scheme with SCMUTILS loaded, to work with (Structure
+and Interpretation of Classical Mechanics) - The book."
+ (interactive)
+ (setenv "MITSCHEME_BAND" "mechanics.com")
+ (setenv "MITSCHEME_HEAP_SIZE" "100000")
+ (run-scheme
+  "/usr/bin/mit-scheme --library /home/nravic/bin/scmutils-20200810/")
+ )
+
 
 (provide 'config-languages.el)
