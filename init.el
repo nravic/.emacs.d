@@ -14,6 +14,7 @@
              '("melpa" . "https://melpa.org/packages/") t)
 
 (package-initialize)
+(require 'package)
 (require 'use-package)
 
 ;; load all custom el files
@@ -53,3 +54,6 @@
     (setenv "PATH" path-from-shell)
     (setq eshell-path-env path-from-shell) ; for eshell users
     (setq exec-path (split-string path-from-shell path-separator))))
+
+;; if using a macbook and want to move command to ctrl 
+(setq mac-command-modifier 'control)

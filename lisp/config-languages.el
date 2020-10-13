@@ -17,8 +17,7 @@
 (use-package lsp-mode
   :ensure t
   :commands lsp
-  :hook ((rust-mode python-mode) . lsp)
-  :config (require 'lsp-clients))
+  :hook ((rust-mode python-mode) . lsp))
 
 (use-package lsp-ui
   :ensure t

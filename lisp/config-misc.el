@@ -89,7 +89,7 @@
 (use-package doom-themes
   :ensure t
   :config
-  (load-theme 'doom-horizon t))
+  (load-theme 'doom-opera-light t))
 
 (use-package telephone-line
   :ensure t
@@ -108,6 +108,24 @@
   :bind
   ("M-u" . move-text-up)
   ("M-p" . move-text-down))
+
+
+;; -------- WINDOW MANAGEMENT -------------
+(use-package ace-window
+  :ensure t
+  :config
+  (global-set-key (kbd "M-j") 'ace-window)
+  (setq aw-background nil)
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+  
+(use-package golden-ratio
+  :ensure t
+  :config
+  (require 'golden-ratio)
+  (setq golden-ratio-auto-scale t)
+  (golden-ratio-mode 1))
+
+;; -------- BUFFER MANAGEMENT -------------
 
 
 (provide 'config-misc.el)
