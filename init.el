@@ -15,6 +15,7 @@
              '("melpa" . "https://melpa.org/packages/") t)
 
 (package-initialize)
+(require 'package)
 (require 'use-package)
 
 ;; load all custom el files
