@@ -44,7 +44,7 @@
   (highlight-indentation-mode -1))
 
 
-;; Rust
+;; Ruts
 (use-package rust-mode
   :ensure t)
 
@@ -72,6 +72,7 @@
   (company-mode +1))
 
 (use-package tide
+  :mode "\\.js\\'"
   :ensure t
   :after (js2-mode company flycheck)
   :config

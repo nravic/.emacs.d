@@ -84,7 +84,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (global-visual-line-mode 1)
-(set-frame-font "Hack-11")
+(set-frame-font "Hack-14")
 
 (use-package doom-themes
   :ensure t
