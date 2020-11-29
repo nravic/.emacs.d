@@ -6,3 +6,4 @@ auto-save-list/*
 ido.last
 custom.el
 .custom.el
+org-roam.db
